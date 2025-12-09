@@ -7,26 +7,19 @@
 
     <style>
     /* ------------------------------------------------------
-       FONT: D-DIN (učitava se iz root foldera GitHub repo-a)
+       FONT: DIN (učitava se iz root foldera: DIN Regular.ttf)
        ------------------------------------------------------ */
     @font-face {
-        font-family: "D-DIN";
-        src: url("D-DIN.otf") format("opentype");
+        font-family: "DIN Web";
+        src: url("DIN%20Regular.ttf") format("truetype");
         font-weight: 400;
         font-style: normal;
     }
 
-    @font-face {
-        font-family: "D-DIN";
-        src: url("D-DIN-Bold.otf") format("opentype");
-        font-weight: 700;
-        font-style: normal;
-    }
-
-    /* GLOBALNI STIL */
+    /* GLOBALNI STIL – koristi naš DIN Web font */
     body {
         margin: 0;
-        font-family: "D-DIN";
+        font-family: "DIN Web";
         scroll-behavior: smooth;
         color: #111;
     }
