@@ -5,73 +5,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Commander d.o.o</title>
 
-    <!-- DIN 2014 FONT – provereno radi -->
-    <link href="https://fonts.cdnfonts.com/css/din-2014" rel="stylesheet">
-
     <style>
-        body {
-            margin: 0;
-            font-family: 'DIN 2014', sans-serif;
-            scroll-behavior: smooth;
-            color: #111;
-        }
+    /* ------------------------------------------------------
+       FONT: D-DIN (učitava se iz root foldera GitHub repo-a)
+       ------------------------------------------------------ */
+    @font-face {
+        font-family: "D-DIN";
+        src: url("D-DIN.otf") format("opentype");
+        font-weight: 400;
+        font-style: normal;
+    }
 
-        /* HERO SECTION */
-        .hero {
-            height: 100vh;
-            position: relative;
-            overflow: hidden;
-        }
+    @font-face {
+        font-family: "D-DIN";
+        src: url("D-DIN-Bold.otf") format("opentype");
+        font-weight: 700;
+        font-style: normal;
+    }
 
-        .hero::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: url("image.jpg") center/cover no-repeat;
-            filter: blur(10px) brightness(0.50) grayscale(100%);
-            transform: scale(1.15);
-        }
+    /* GLOBALNI STIL */
+    body {
+        margin: 0;
+        font-family: "D-DIN";
+        scroll-behavior: smooth;
+        color: #111;
+    }
 
-        /* LOGO – maksimalno veliki */
-        .logo {
-            position: absolute;
-            z-index: 2;
-            width: 75vw;
-            max-width: 900px;
-            min-width: 300px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
+    /* ----------------------------------------
+       HERO SECTION (blur + grayscale background)
+       ---------------------------------------- */
+    .hero {
+        height: 100vh;
+        position: relative;
+        overflow: hidden;
+    }
 
-        /* MAPA – crno-bela */
-        .map {
-            width: 100%;
-            height: 350px;
-            border: none;
-            filter: grayscale(100%) brightness(0.85);
-        }
+    .hero::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: url("image.jpg") center/cover no-repeat;
+        filter: blur(10px) brightness(0.50) grayscale(100%);
+        transform: scale(1.15);
+    }
 
-        /* KONTAKT SEKCIJA */
-        .contact {
-            padding: 80px 20px;
-            max-width: 650px;
-            margin: auto;
-            text-align: center;
-        }
+    /* LOGO – maksimalno veliki, centriran */
+    .logo {
+        position: absolute;
+        z-index: 2;
+        width: 75vw;
+        max-width: 900px;
+        min-width: 300px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 
-        h2 {
-            margin-bottom: 20px;
-            font-size: 28px;
-            font-weight: 700;
-        }
+    /* ----------------------------------------
+       GOOGLE MAPS (grayscale)
+       ---------------------------------------- */
+    .map {
+        width: 100%;
+        height: 350px;
+        border: none;
+        filter: grayscale(100%) brightness(0.85);
+    }
 
-        .contact p {
-            margin: 8px 0;
-            font-size: 18px;
-            font-weight: 400;
-        }
+    /* ----------------------------------------
+       KONTAKT SEKCIJA
+       ---------------------------------------- */
+    .contact {
+        padding: 80px 20px;
+        max-width: 650px;
+        margin: auto;
+        text-align: center;
+    }
+
+    h2 {
+        margin-bottom: 20px;
+        font-size: 28px;
+        font-weight: 700;
+    }
+
+    .contact p {
+        margin: 8px 0;
+        font-size: 18px;
+        font-weight: 400;
+    }
     </style>
 </head>
 <body>
@@ -81,7 +102,7 @@
         <img src="logo.png" alt="Logo" class="logo">
     </section>
 
-    <!-- GOOGLE MAPS – TAČNA LOKACIJA -->
+    <!-- GOOGLE MAPS – tačna lokacija -->
     <iframe 
         class="map"
         src="https://www.google.com/maps?q=Nova+2+20,+Beograd+11030&output=embed"
@@ -89,7 +110,7 @@
         referrerpolicy="no-referrer-when-downgrade">
     </iframe>
 
-    <!-- KONTAKT -->
+    <!-- KONTAKT PODACI -->
     <section class="contact" id="kontakt">
         <h2>Kontakt</h2>
 
