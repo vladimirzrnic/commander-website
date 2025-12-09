@@ -17,8 +17,8 @@
         margin: 0;
         font-family: "DIN Web";
         color: #111;
-        scroll-behavior: smooth;
         background: #fff;
+        scroll-behavior: smooth;
     }
 
     /* MAPA NA VRHU STRANICE */
@@ -54,29 +54,25 @@
         font-weight: bold;
     }
 
-    /* TABELA – BEZ PRELOMA TEKSTA */
+    /* TABELA — BEZ PRELOMA I BEZ SKRAĆIVANJA */
+    .table-wrapper {
+        overflow-x: auto; /* omogućava horizontalni scroll ako je neophodno */
+    }
+
     table {
         width: 100%;
         border-collapse: collapse;
-        table-layout: fixed; /* sprečava prelom i širi kolone proporcionalno */
     }
 
     td {
-        padding: 5px 0;
-        font-size: 12px;
-        white-space: nowrap;   /* zabranjuje prelom teksta */
-        overflow: hidden;      /* sprečava vizuelni haos */
-        text-overflow: ellipsis; /* stavlja ... ako ekran bude previše uzak */
+        padding: 4px 0; /* normalan razmak, kao ranije */
+        font-size: 18px;
+        white-space: nowrap; /* zabranjuje prelom */
     }
 
     td:first-child {
         font-weight: bold;
         width: 40%;
-    }
-
-    /* Ako je ekran stvarno uzak – omogućavamo horizontalni scroll */
-    .table-wrapper {
-        overflow-x: auto;
     }
     </style>
 </head>
@@ -91,53 +87,33 @@
         referrerpolicy="no-referrer-when-downgrade">
     </iframe>
 
-    <!-- LOGO – ISPOD MAPE -->
+    <!-- LOGO -->
     <div class="logo-container">
         <img src="logo.png" alt="Logo" class="logo">
     </div>
 
-    <!-- TABELARNI PODACI – ISPOD LOGA -->
+    <!-- TABELARNI PRIKAZ PODATAKA -->
     <section class="contact" id="kontakt">
         <h2>Contact / Kontakt</h2>
 
         <div class="table-wrapper">
         <table>
             <tr>
-                <td>Registered Company Name:</td>
+                <td>Registered Company Name / Pun naziv kompanije:</td>
                 <td>COMMANDER DRUŠTVO SA OGRANIČENOM ODGOVORNOŠĆU BEOGRAD - ČUKARICA</td>
             </tr>
             <tr>
-                <td>Trade Name:</td>
+                <td>Trade Name / Skraćeni naziv kompanije:</td>
                 <td>COMMANDER D.O.O BEOGRAD</td>
             </tr>
             <tr>
-                <td>Address:</td>
+                <td>Address / Adresa:</td>
                 <td>Nova 2 20, Beograd 11147</td>
             </tr>
             <tr>
-                <td>TAX ID (PIB):</td>
+                <td>TAX ID / PIB:</td>
                 <td>12412448</td>
             </tr>
             <tr>
-                <td>Company ID:</td>
+                <td>Company ID / Matični broj:</td>
                 <td>21668923</td>
-            </tr>
-            <tr>
-                <td>Activity Code:</td>
-                <td>7022</td>
-            </tr>
-            <tr>
-                <td>E-mail:</td>
-                <td>office@commander.rs</td>
-            </tr>
-            <tr>
-                <td>Web:</td>
-                <td>www.commander.rs</td>
-            </tr>
-        </table>
-        </div>
-
-    </section>
-
-</body>
-</html>
