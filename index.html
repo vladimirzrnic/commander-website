@@ -16,18 +16,22 @@
     body {
         margin: 0;
         font-family: "DIN Web";
-        scroll-behavior: smooth;
         color: #111;
+        scroll-behavior: smooth;
+        background: #fff;
     }
 
-    /* HERO – samo logo */
-    .hero {
-        height: 100vh;
-        position: relative;
-        background: #ffffff;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    /* MAPA NA VRHU STRANICE */
+    .map {
+        width: 100%;
+        height: 350px;
+        border: none;
+    }
+
+    /* LOGO */
+    .logo-container {
+        text-align: center;
+        margin: 60px 0 40px 0;
     }
 
     .logo {
@@ -36,55 +40,50 @@
         min-width: 300px;
     }
 
-    /* MAPA */
-    .map {
-        width: 100%;
-        height: 350px;
-        border: none;
-    }
-
-    /* KONTAKT */
+    /* KONTAKT SEKCIJA */
     .contact {
-        padding: 80px 20px;
-        max-width: 650px;
+        max-width: 900px;
         margin: auto;
-        text-align: left;
+        padding: 10px 20px 80px 20px;
     }
 
     h2 {
         text-align: center;
         margin-bottom: 40px;
         font-size: 28px;
-        font-weight: 700;
+        font-weight: bold;
     }
 
-    /* TABELA BEZ BORDERA */
+    /* TABELA – BEZ PRELOMA TEKSTA */
     table {
         width: 100%;
         border-collapse: collapse;
+        table-layout: fixed; /* sprečava prelom i širi kolone proporcionalno */
     }
 
     td {
-        padding: 8px 0;
+        padding: 10px 0;
         font-size: 18px;
-        vertical-align: top;
+        white-space: nowrap;   /* zabranjuje prelom teksta */
+        overflow: hidden;      /* sprečava vizuelni haos */
+        text-overflow: ellipsis; /* stavlja ... ako ekran bude previše uzak */
     }
 
     td:first-child {
         font-weight: bold;
-        width: 48%;
+        width: 40%;
+    }
+
+    /* Ako je ekran stvarno uzak – omogućavamo horizontalni scroll */
+    .table-wrapper {
+        overflow-x: auto;
     }
     </style>
 </head>
 
 <body>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <img src="logo.png" alt="Logo" class="logo">
-    </section>
-
-    <!-- GOOGLE MAPS -->
+    <!-- GOOGLE MAPS NA VRHU -->
     <iframe 
         class="map"
         src="https://www.google.com/maps?q=Nova+2+20,+Beograd+11030&output=embed"
@@ -92,33 +91,39 @@
         referrerpolicy="no-referrer-when-downgrade">
     </iframe>
 
-    <!-- KONTAKT PODACI -->
+    <!-- LOGO – ISPOD MAPE -->
+    <div class="logo-container">
+        <img src="logo.png" alt="Logo" class="logo">
+    </div>
+
+    <!-- TABELARNI PODACI – ISPOD LOGA -->
     <section class="contact" id="kontakt">
         <h2>Contact / Kontakt</h2>
 
+        <div class="table-wrapper">
         <table>
             <tr>
-                <td>Registered Company Name / Pun naziv kompanije:</td>
+                <td>Registered Company Name:</td>
                 <td>COMMANDER DRUŠTVO SA OGRANIČENOM ODGOVORNOŠĆU BEOGRAD - ČUKARICA</td>
             </tr>
             <tr>
-                <td>Trade Name / Skraćeni naziv kompanije:</td>
+                <td>Trade Name:</td>
                 <td>COMMANDER D.O.O BEOGRAD</td>
             </tr>
             <tr>
-                <td>Address / Adresa:</td>
+                <td>Address:</td>
                 <td>Nova 2 20, Beograd 11147</td>
             </tr>
             <tr>
-                <td>TAX ID / PIB:</td>
+                <td>TAX ID (PIB):</td>
                 <td>12412448</td>
             </tr>
             <tr>
-                <td>Company ID / Matični broj:</td>
+                <td>Company ID:</td>
                 <td>21668923</td>
             </tr>
             <tr>
-                <td>Activity Code / Šifra delatnosti:</td>
+                <td>Activity Code:</td>
                 <td>7022</td>
             </tr>
             <tr>
@@ -130,6 +135,7 @@
                 <td>www.commander.rs</td>
             </tr>
         </table>
+        </div>
 
     </section>
 
