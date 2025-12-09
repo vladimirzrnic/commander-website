@@ -2,7 +2,7 @@
 <html lang="sr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Commander d.o.o</title>
 
     <style>
@@ -24,7 +24,7 @@
     /* MAPA */
     .map {
         width: 100%;
-        height: 40vh; /* dinamična visina, lepše na mobilnim uređajima */
+        height: 40vh;
         min-height: 250px;
         border: none;
     }
@@ -54,12 +54,7 @@
         font-weight: bold;
     }
 
-    /* TABELA */
-    .table-wrapper {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-
+    /* TABELA – DESKTOP (default) */
     table {
         width: 100%;
         border-collapse: collapse;
@@ -69,6 +64,7 @@
         padding: 6px 4px;
         font-size: 16px;
         vertical-align: top;
+        white-space: nowrap;  /* NEMA PRELOMA TEKSTA NA ŠIROKIM EKRANIMA */
     }
 
     td:first-child {
@@ -77,12 +73,12 @@
     }
 
     /* -----------------------------------------
-       RESPONSIVE — MOBILNI EKRANI
+       MOBILNI EKRANI
        ----------------------------------------- */
     @media (max-width: 600px) {
 
-        .logo-container {
-            margin: 20px 0 10px 0;
+        td {
+            white-space: normal; /* DOZVOLJAVA PRELOM SAMO NA USKIM EKRANIMA */
         }
 
         .logo {
@@ -92,19 +88,7 @@
         h2 {
             font-size: 22px;
         }
-
-        td {
-            display: block; /* svaka ćelija ide ispod prethodne */
-            width: 100%;
-            white-space: normal; /* omogućava prelom teksta */
-        }
-
-        td:first-child {
-            margin-top: 12px;
-            font-size: 15px;
-        }
     }
-
     </style>
 </head>
 
@@ -127,7 +111,6 @@
     <section class="contact" id="kontakt">
         <h2>Contact / Kontakt</h2>
 
-        <div class="table-wrapper">
         <table>
             <tr>
                 <td>Registered Company Name / Pun naziv kompanije:</td>
@@ -166,7 +149,7 @@
                 <td>+381 (0) 64 3333 431</td>
             </tr>
         </table>
-        </div>
+
     </section>
 
 </body>
