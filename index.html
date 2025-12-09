@@ -6,9 +6,6 @@
     <title>Commander d.o.o</title>
 
     <style>
-    /* ------------------------------------------------------
-       FONT: DIN (učitava se iz root foldera: DIN Regular.ttf)
-       ------------------------------------------------------ */
     @font-face {
         font-family: "DIN Web";
         src: url("dinpro.otf") format("truetype");
@@ -16,7 +13,6 @@
         font-style: normal;
     }
 
-    /* GLOBALNI STIL – koristi naš DIN Web font */
     body {
         margin: 0;
         font-family: "DIN Web";
@@ -24,55 +20,63 @@
         color: #111;
     }
 
-    /* ----------------------------------------
-       HERO SECTION (blur + grayscale background)
-       ---------------------------------------- */
+    /* HERO – samo logo */
+    .hero {
+        height: 100vh;
+        position: relative;
+        background: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-    /* LOGO – maksimalno veliki, centriran */
     .logo {
-        position: absolute;
-        z-index: 2;
         width: 75vw;
         max-width: 900px;
         min-width: 300px;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
     }
 
-    /* ----------------------------------------
-       GOOGLE MAPS (grayscale)
-       ---------------------------------------- */
+    /* MAPA */
     .map {
         width: 100%;
         height: 350px;
         border: none;
-        filter: grayscale(100%) brightness(0.85);
     }
 
-    /* ----------------------------------------
-       KONTAKT SEKCIJA
-       ---------------------------------------- */
+    /* KONTAKT */
     .contact {
         padding: 80px 20px;
         max-width: 650px;
         margin: auto;
-        text-align: center;
+        text-align: left;
     }
 
     h2 {
-        margin-bottom: 20px;
+        text-align: center;
+        margin-bottom: 40px;
         font-size: 28px;
         font-weight: 700;
     }
 
-    .contact p {
-        margin: 8px 0;
+    /* TABELA BEZ BORDERA */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    td {
+        padding: 8px 0;
         font-size: 18px;
-        font-weight: 400;
+        vertical-align: top;
+    }
+
+    td:first-child {
+        font-weight: bold;
+        width: 48%;
     }
     </style>
 </head>
+
 <body>
 
     <!-- HERO SECTION -->
@@ -80,7 +84,7 @@
         <img src="logo.png" alt="Logo" class="logo">
     </section>
 
-    <!-- GOOGLE MAPS – tačna lokacija -->
+    <!-- GOOGLE MAPS -->
     <iframe 
         class="map"
         src="https://www.google.com/maps?q=Nova+2+20,+Beograd+11030&output=embed"
@@ -92,14 +96,41 @@
     <section class="contact" id="kontakt">
         <h2>Contact / Kontakt</h2>
 
-        <p><strong>Registered Company Name / Pun naziv kompanije:</strong> COMMANDER DRUŠTVO SA OGRANIČENOM ODGOVORNOŠĆU BEOGRAD - ČUKARICA</p>
-        <p><strong>Trade Name / Skraćeni naziv kompanije:</strong> COMMANDER D.O.O BEOGRAD</p>
-        <p><strong>Address / Adresa:</strong> Nova 2 20, Beograd 11147</p>
-        <p><strong>TAX ID / Poreski identifikacioni broj (PIB):</strong> 12412448</p>
-        <p><strong>Company ID / Matični broj:</strong> 21668923</p>
-        <p><strong>Activity Code / Šifra delatnosti:</strong> 7022</p>     
-        <p><strong>E-mail / Elektronska pošta:</strong> office@commander.rs</p>
-        <p><strong>Web:</strong> www.commander.rs</p>
+        <table>
+            <tr>
+                <td>Registered Company Name / Pun naziv kompanije:</td>
+                <td>COMMANDER DRUŠTVO SA OGRANIČENOM ODGOVORNOŠĆU BEOGRAD - ČUKARICA</td>
+            </tr>
+            <tr>
+                <td>Trade Name / Skraćeni naziv kompanije:</td>
+                <td>COMMANDER D.O.O BEOGRAD</td>
+            </tr>
+            <tr>
+                <td>Address / Adresa:</td>
+                <td>Nova 2 20, Beograd 11147</td>
+            </tr>
+            <tr>
+                <td>TAX ID / PIB:</td>
+                <td>12412448</td>
+            </tr>
+            <tr>
+                <td>Company ID / Matični broj:</td>
+                <td>21668923</td>
+            </tr>
+            <tr>
+                <td>Activity Code / Šifra delatnosti:</td>
+                <td>7022</td>
+            </tr>
+            <tr>
+                <td>E-mail:</td>
+                <td>office@commander.rs</td>
+            </tr>
+            <tr>
+                <td>Web:</td>
+                <td>www.commander.rs</td>
+            </tr>
+        </table>
+
     </section>
 
 </body>
