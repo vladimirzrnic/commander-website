@@ -2,7 +2,7 @@
 <html lang="sr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Commander d.o.o</title>
 
     <style>
@@ -15,48 +15,49 @@
 
     body {
         margin: 0;
-        font-family: "DIN Web";
+        font-family: "DIN Web", sans-serif;
         color: #111;
         background: #fff;
         scroll-behavior: smooth;
     }
 
-    /* MAPA NA VRHU STRANICE */
+    /* MAPA */
     .map {
         width: 100%;
-        height: 350px;
+        height: 40vh; /* dinamična visina, lepše na mobilnim uređajima */
+        min-height: 250px;
         border: none;
     }
 
     /* LOGO */
     .logo-container {
         text-align: center;
-        margin: 60px 0 40px 0;
+        margin: 40px 0 20px 0;
     }
 
     .logo {
-        width: 75vw;
+        width: 80%;
         max-width: 900px;
-        min-width: 300px;
     }
 
     /* KONTAKT SEKCIJA */
     .contact {
         max-width: 900px;
         margin: auto;
-        padding: 10px 20px 80px 20px;
+        padding: 20px;
     }
 
     h2 {
         text-align: center;
-        margin-bottom: 40px;
+        margin-bottom: 30px;
         font-size: 28px;
         font-weight: bold;
     }
 
-    /* TABELA — BEZ PRELOMA I BEZ SKRAĆIVANJA */
+    /* TABELA */
     .table-wrapper {
-        overflow-x: auto; /* omogućava horizontalni scroll ako je neophodno */
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     table {
@@ -65,21 +66,51 @@
     }
 
     td {
-        padding: 4px 0; /* normalan razmak, kao ranije */
-        font-size: 14px;
-        white-space: nowrap; /* zabranjuje prelom */
+        padding: 6px 4px;
+        font-size: 16px;
+        vertical-align: top;
     }
 
     td:first-child {
         font-weight: bold;
         width: 40%;
     }
+
+    /* -----------------------------------------
+       RESPONSIVE — MOBILNI EKRANI
+       ----------------------------------------- */
+    @media (max-width: 600px) {
+
+        .logo-container {
+            margin: 20px 0 10px 0;
+        }
+
+        .logo {
+            width: 90%;
+        }
+
+        h2 {
+            font-size: 22px;
+        }
+
+        td {
+            display: block; /* svaka ćelija ide ispod prethodne */
+            width: 100%;
+            white-space: normal; /* omogućava prelom teksta */
+        }
+
+        td:first-child {
+            margin-top: 12px;
+            font-size: 15px;
+        }
+    }
+
     </style>
 </head>
 
 <body>
 
-    <!-- GOOGLE MAPS NA VRHU -->
+    <!-- GOOGLE MAPS -->
     <iframe 
         class="map"
         src="https://www.google.com/maps?q=Nova+2+20,+Beograd+11030&output=embed"
@@ -92,7 +123,7 @@
         <img src="logo.png" alt="Logo" class="logo">
     </div>
 
-    <!-- TABELARNI PRIKAZ PODATAKA -->
+    <!-- KONTAKT PODACI -->
     <section class="contact" id="kontakt">
         <h2>Contact / Kontakt</h2>
 
@@ -136,7 +167,6 @@
             </tr>
         </table>
         </div>
-
     </section>
 
 </body>
