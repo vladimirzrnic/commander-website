@@ -54,7 +54,7 @@
         font-weight: bold;
     }
 
-    /* TABELA – DESKTOP (default) */
+    /* TABELA – DEFAULT (MOBILNI + TABLET + DESKTOP) */
     table {
         width: 100%;
         border-collapse: collapse;
@@ -64,7 +64,7 @@
         padding: 6px 4px;
         font-size: 16px;
         vertical-align: top;
-        white-space: nowrap;  /* NEMA PRELOMA TEKSTA NA ŠIROKIM EKRANIMA */
+        white-space: normal;   /* PRELOM DOZVOLJEN UVEK */
     }
 
     td:first-child {
@@ -73,14 +73,18 @@
     }
 
     /* -----------------------------------------
-       MOBILNI EKRANI
+       DESKTOP ŠIROKI EKRANI (VRATI NOWRAP)
+       ----------------------------------------- */
+    @media (min-width: 1200px) {
+        td {
+            white-space: nowrap;  /* SAMO NA VEOMA ŠIROKIM EKRANIMA */
+        }
+    }
+
+    /* -----------------------------------------
+       MOBILNI EKRANI (SITNE PRILAGODBE)
        ----------------------------------------- */
     @media (max-width: 600px) {
-
-        td {
-            white-space: normal; /* DOZVOLJAVA PRELOM SAMO NA USKIM EKRANIMA */
-        }
-
         .logo {
             width: 90%;
         }
