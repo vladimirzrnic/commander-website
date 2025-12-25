@@ -147,4 +147,139 @@
     h2 {
         text-align: center;
         margin-bottom: 30px;
-        font-size: 28
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    td {
+        padding: 6px 4px;
+        font-size: 16px;
+        vertical-align: top;
+        white-space: normal;
+        color: var(--text);
+    }
+
+    td:first-child {
+        font-weight: bold;
+        width: 40%;
+        color: var(--muted);
+    }
+
+    @media (min-width: 1200px) {
+        td { white-space: nowrap; }
+    }
+
+    @media (max-width: 600px) {
+        .logo { width: 90%; }
+        h2 { font-size: 22px; }
+        .theme-toggle-wrap { top: 10px; right: 10px; }
+    }
+    </style>
+</head>
+
+<body>
+
+    <!-- MAP + TOGGLE -->
+    <div class="topbar">
+        <div class="theme-toggle-wrap">
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <span class="theme-icon">☀️</span>
+                <span class="theme-track">
+                    <span class="theme-thumb"></span>
+                </span>
+                <span class="theme-icon">🌙</span>
+            </button>
+        </div>
+
+        <iframe 
+            class="map"
+            src="https://www.google.com/maps?q=Nova+2+20,+Beograd+11030&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+
+    <!-- LOGO -->
+    <div class="logo-container">
+        <img src="logo.png" alt="Logo" class="logo">
+    </div>
+
+    <!-- CONTACT -->
+    <section class="contact" id="kontakt">
+        <h2>Contact / Kontakt</h2>
+
+        <table>
+            <tr>
+                <td>Registered Company Name / Pun naziv kompanije:</td>
+                <td>COMMANDER DRUŠTVO SA OGRANIČENOM ODGOVORNOŠĆU BEOGRAD - ČUKARICA</td>
+            </tr>
+            <tr>
+                <td>Trade Name / Skraćeni naziv kompanije:</td>
+                <td>COMMANDER D.O.O BEOGRAD</td>
+            </tr>
+            <tr>
+                <td>Address / Adresa:</td>
+                <td>Nova 2 20, Beograd 11147</td>
+            </tr>
+            <tr>
+                <td>TAX ID / PIB:</td>
+                <td>12412448</td>
+            </tr>
+            <tr>
+                <td>Company ID / Matični broj:</td>
+                <td>21668923</td>
+            </tr>
+            <tr>
+                <td>Activity Code / Šifra delatnosti:</td>
+                <td>7022</td>
+            </tr>
+            <tr>
+                <td>E-mail / Elektronska pošta:</td>
+                <td>office@commander.rs</td>
+            </tr>
+            <tr>
+                <td>Web / Internet prezentacija:</td>
+                <td>www.commander.rs</td>
+            </tr>
+            <tr>
+                <td>Phone / Telefon:</td>
+                <td>+381 (0) 64 3333 431</td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- THEME SCRIPT -->
+    <script>
+    (function () {
+        const root = document.documentElement;
+        const btn = document.getElementById('themeToggle');
+
+        const saved = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        function applyTheme(theme) {
+            root.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+        }
+
+        if (saved === 'light' || saved === 'dark') {
+            applyTheme(saved);
+        } else {
+            applyTheme(systemPrefersDark ? 'dark' : 'light');
+        }
+
+        btn.addEventListener('click', () => {
+            const current = root.getAttribute('data-theme');
+            applyTheme(current === 'dark' ? 'light' : 'dark');
+        });
+    })();
+    </script>
+
+</body>
+</html>
