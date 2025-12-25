@@ -13,15 +13,44 @@
         font-style: normal;
     }
 
+    /* =====================
+       THEME VARIABLES
+       ===================== */
+    :root{
+        color-scheme: light;
+        --bg: #ffffff;
+        --text: #111111;
+        --muted: rgba(0,0,0,0.65);
+
+        --toggle-bg: rgba(0,0,0,0.08);
+        --toggle-border: rgba(0,0,0,0.12);
+        --thumb: #ffffff;
+        --shadow: 0 8px 20px rgba(0,0,0,0.14);
+    }
+
+    html[data-theme="dark"]{
+        color-scheme: dark;
+        --bg: #0b0b0f;
+        --text: #f2f2f7;
+        --muted: rgba(255,255,255,0.70);
+
+        --toggle-bg: rgba(255,255,255,0.12);
+        --toggle-border: rgba(255,255,255,0.16);
+        --thumb: #1c1c22;
+        --shadow: 0 12px 26px rgba(0,0,0,0.45);
+    }
+
     body {
         margin: 0;
         font-family: "DIN Web", sans-serif;
-        color: #111;
-        background: #fff;
+        color: var(--text);
+        background: var(--bg);
         scroll-behavior: smooth;
     }
 
-    /* MAPA */
+    /* =====================
+       MAP
+       ===================== */
     .map {
         width: 100%;
         height: 40vh;
@@ -29,7 +58,73 @@
         border: none;
     }
 
-    /* LOGO */
+    /* =====================
+       TOGGLE BAR
+       ===================== */
+    .topbar{
+        position: relative;
+    }
+
+    .theme-toggle-wrap{
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        z-index: 10;
+    }
+
+    .theme-toggle{
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--toggle-border);
+        background: rgba(255,255,255,0.55);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    html[data-theme="dark"] .theme-toggle{
+        background: rgba(0,0,0,0.35);
+    }
+
+    .theme-icon{
+        font-size: 16px;
+        line-height: 1;
+        opacity: 0.8;
+        user-select: none;
+    }
+
+    .theme-track{
+        position: relative;
+        width: 46px;
+        height: 28px;
+        border-radius: 999px;
+        background: var(--toggle-bg);
+        box-shadow: inset 0 0 0 1px var(--toggle-border);
+    }
+
+    .theme-thumb{
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 22px;
+        height: 22px;
+        border-radius: 999px;
+        background: var(--thumb);
+        box-shadow: var(--shadow);
+        transition: transform 220ms cubic-bezier(.2,.8,.2,1);
+    }
+
+    html[data-theme="dark"] .theme-thumb{
+        transform: translateX(18px);
+    }
+
+    /* =====================
+       LOGO
+       ===================== */
     .logo-container {
         text-align: center;
         margin: 40px 0 20px 0;
@@ -40,7 +135,9 @@
         max-width: 900px;
     }
 
-    /* KONTAKT SEKCIJA */
+    /* =====================
+       CONTACT
+       ===================== */
     .contact {
         max-width: 900px;
         margin: auto;
@@ -50,111 +147,4 @@
     h2 {
         text-align: center;
         margin-bottom: 30px;
-        font-size: 28px;
-        font-weight: bold;
-    }
-
-    /* TABELA – DEFAULT (MOBILNI + TABLET + DESKTOP) */
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    td {
-        padding: 6px 4px;
-        font-size: 16px;
-        vertical-align: top;
-        white-space: normal;   /* PRELOM DOZVOLJEN UVEK */
-    }
-
-    td:first-child {
-        font-weight: bold;
-        width: 40%;
-    }
-
-    /* -----------------------------------------
-       DESKTOP ŠIROKI EKRANI (VRATI NOWRAP)
-       ----------------------------------------- */
-    @media (min-width: 1200px) {
-        td {
-            white-space: nowrap;  /* SAMO NA VEOMA ŠIROKIM EKRANIMA */
-        }
-    }
-
-    /* -----------------------------------------
-       MOBILNI EKRANI (SITNE PRILAGODBE)
-       ----------------------------------------- */
-    @media (max-width: 600px) {
-        .logo {
-            width: 90%;
-        }
-
-        h2 {
-            font-size: 22px;
-        }
-    }
-    </style>
-</head>
-
-<body>
-
-    <!-- GOOGLE MAPS -->
-    <iframe 
-        class="map"
-        src="https://www.google.com/maps?q=Nova+2+20,+Beograd+11030&output=embed"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
-
-    <!-- LOGO -->
-    <div class="logo-container">
-        <img src="logo.png" alt="Logo" class="logo">
-    </div>
-
-    <!-- KONTAKT PODACI -->
-    <section class="contact" id="kontakt">
-        <h2>Contact / Kontakt</h2>
-
-        <table>
-            <tr>
-                <td>Registered Company Name / Pun naziv kompanije:</td>
-                <td>COMMANDER DRUŠTVO SA OGRANIČENOM ODGOVORNOŠĆU BEOGRAD - ČUKARICA</td>
-            </tr>
-            <tr>
-                <td>Trade Name / Skraćeni naziv kompanije:</td>
-                <td>COMMANDER D.O.O BEOGRAD</td>
-            </tr>
-            <tr>
-                <td>Address / Adresa:</td>
-                <td>Nova 2 20, Beograd 11147</td>
-            </tr>
-            <tr>
-                <td>TAX ID / PIB:</td>
-                <td>12412448</td>
-            </tr>
-            <tr>
-                <td>Company ID / Matični broj:</td>
-                <td>21668923</td>
-            </tr>
-            <tr>
-                <td>Activity Code / Šifra delatnosti:</td>
-                <td>7022</td>
-            </tr>
-            <tr>
-                <td>E-mail / Elektronska pošta:</td>
-                <td>office@commander.rs</td>
-            </tr>
-            <tr>
-                <td>Web / Internet prezentacija:</td>
-                <td>www.commander.rs</td>
-            </tr>
-            <tr>
-                <td>Phone / Telefon:</td>
-                <td>+381 (0) 64 3333 431</td>
-            </tr>
-        </table>
-
-    </section>
-
-</body>
-</html>
+        font-size: 28
