@@ -9,7 +9,7 @@
   <meta name="description" content="Commander d.o.o Beograd — konsultantske usluge u oblasti telekomunikacionih i signalnih instalacija.">
   <link rel="canonical" href="https://commander.rs/">
 
-  <!-- Favicon (pošto imaš samo favicon.ico u root-u) -->
+  <!-- Favicon -->
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
   <style>
@@ -62,11 +62,11 @@
       position: relative;
     }
 
+    /* map container (div) */
     .map {
       width: 100%;
       height: 40vh;
       min-height: 250px;
-      border: none;
       display: block;
     }
 
@@ -117,7 +117,6 @@
       background: rgba(0,0,0,0.35);
     }
 
-    /* Clean (no color) icons */
     .theme-icon{
       display: flex;
       align-items: center;
@@ -213,12 +212,10 @@
       color: var(--muted);
     }
 
-    /* Wide screens: nowrap */
     @media (min-width: 1200px) {
       td { white-space: nowrap; }
     }
 
-    /* Mobile tweaks */
     @media (max-width: 600px) {
       .logo { width: 90%; }
       h2 { font-size: 22px; }
@@ -234,7 +231,7 @@
   <div class="topbar">
     <div class="theme-toggle-wrap">
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme">
-        <!-- Sun icon (stroke only) -->
+        <!-- Sun icon -->
         <span class="theme-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="4"></circle>
@@ -253,7 +250,7 @@
           <span class="theme-thumb"></span>
         </span>
 
-        <!-- Moon icon (stroke only) -->
+        <!-- Moon icon -->
         <span class="theme-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24">
             <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path>
@@ -263,12 +260,8 @@
     </div>
 
     <div class="map-wrap">
-      <iframe
-        class="map"
-        src="https://www.google.com/maps?q=Nova+2+20,+Beograd+11030&output=embed"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
+      <!-- Google Map (JS API) -->
+      <div id="map" class="map" aria-label="Mapa lokacije"></div>
       <div class="map-overlay" aria-hidden="true"></div>
     </div>
   </div>
@@ -337,19 +330,53 @@
         localStorage.setItem('theme', theme);
       }
 
-      // Initial theme
       if (saved === 'light' || saved === 'dark') {
         applyTheme(saved);
       } else {
         applyTheme(systemPrefersDark ? 'dark' : 'light');
       }
 
-      // Toggle
       btn.addEventListener('click', () => {
         const current = root.getAttribute('data-theme');
         applyTheme(current === 'dark' ? 'light' : 'dark');
       });
     })();
+  </script>
+
+  <!-- GOOGLE MAPS INIT -->
+<script>
+  function initMap() {
+    const location = {
+      lat: 44.75757818742131,
+      lng: 20.413038574132614
+    };
+
+      const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 16,
+        center: location,
+        mapTypeControl: false,
+        streetViewControl: false,
+        fullscreenControl: false
+      });
+
+      // Marker = logo
+      new google.maps.Marker({
+        position: location,
+        map: map,
+        title: "COMMANDER D.O.O",
+        icon: {
+          url: "/logo.png",
+          scaledSize: new google.maps.Size(48, 48),
+          anchor: new google.maps.Point(24, 24)
+        }
+      });
+    }
+  </script>
+
+  <!-- ✅ OVDE NALepiš SVOJ API KEY (u fajlu, ne u poruci) -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDs9iyWR6CYdRGPSzlhYrgoJl373WFazmY"
+    async defer>
   </script>
 
 </body>
