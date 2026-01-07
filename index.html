@@ -4,418 +4,185 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- SEO -->
   <title>COMMANDER D.O.O BEOGRAD</title>
   <meta name="description" content="Commander d.o.o Beograd — konsultantske usluge u oblasti telekomunikacionih i signalnih instalacija.">
   <link rel="canonical" href="https://commander.rs/">
-
-  <!-- Favicon -->
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
   <style>
     @font-face {
       font-family: "DIN Web";
       src: url("dinpro.otf") format("truetype");
-      font-weight: 400;
-      font-style: normal;
     }
 
-    /* =====================
-       THEME VARIABLES
-       ===================== */
     :root{
-      color-scheme: light;
-      --bg: #ffffff;
-      --text: #111111;
-      --muted: rgba(0,0,0,0.65);
-
-      --toggle-bg: rgba(0,0,0,0.08);
-      --toggle-border: rgba(0,0,0,0.12);
-      --thumb: #ffffff;
-      --shadow: 0 8px 20px rgba(0,0,0,0.14);
+      --bg:#ffffff;
+      --text:#111;
+      --muted:rgba(0,0,0,.65);
+      --toggle-bg:rgba(0,0,0,.08);
+      --toggle-border:rgba(0,0,0,.12);
+      --thumb:#fff;
     }
 
     html[data-theme="dark"]{
-      color-scheme: dark;
-      --bg: #0b0b0f;
-      --text: #f2f2f7;
-      --muted: rgba(255,255,255,0.70);
-
-      --toggle-bg: rgba(255,255,255,0.12);
-      --toggle-border: rgba(255,255,255,0.16);
-      --thumb: #1c1c22;
-      --shadow: 0 12px 26px rgba(0,0,0,0.45);
+      --bg:#0b0b0f;
+      --text:#f2f2f7;
+      --muted:rgba(255,255,255,.7);
+      --toggle-bg:rgba(255,255,255,.12);
+      --toggle-border:rgba(255,255,255,.16);
+      --thumb:#1c1c22;
     }
 
-    body {
-      margin: 0;
-      font-family: "DIN Web", sans-serif;
-      color: var(--text);
-      background: var(--bg);
-      scroll-behavior: smooth;
+    body{
+      margin:0;
+      font-family:"DIN Web",sans-serif;
+      background:var(--bg);
+      color:var(--text);
     }
 
-    /* =====================
-       MAP
-       ===================== */
-    .map-wrap{
-      position: relative;
-    }
-
-    .map {
-      width: 100%;
-      height: 40vh;
-      min-height: 250px;
-      border: none;
-      display: block;
-    }
-
-    /* =====================
-       TOGGLE BAR
-       ===================== */
-    .topbar{
-      position: relative;
-    }
+    .topbar{position:relative}
+    .map{width:100%;height:40vh;min-height:250px}
 
     .theme-toggle-wrap{
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      z-index: 10;
+      position:absolute;
+      top:14px;
+      right:14px;
+      z-index:10;
     }
 
     .theme-toggle{
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--toggle-border);
-      background: rgba(255,255,255,0.55);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--toggle-border);
+      background:rgba(255,255,255,.55);
+      cursor:pointer;
     }
 
     html[data-theme="dark"] .theme-toggle{
-      background: rgba(0,0,0,0.35);
-    }
-
-    .theme-icon{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .theme-icon svg{
-      width: 18px;
-      height: 18px;
-      stroke: var(--text);
-      fill: none;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      opacity: 0.7;
+      background:rgba(0,0,0,.35);
     }
 
     .theme-track{
-      position: relative;
-      width: 46px;
-      height: 28px;
-      border-radius: 999px;
-      background: var(--toggle-bg);
-      box-shadow: inset 0 0 0 1px var(--toggle-border);
+      width:46px;
+      height:28px;
+      border-radius:999px;
+      background:var(--toggle-bg);
+      position:relative;
     }
 
     .theme-thumb{
-      position: absolute;
-      top: 3px;
-      left: 3px;
-      width: 22px;
-      height: 22px;
-      border-radius: 999px;
-      background: var(--thumb);
-      box-shadow: var(--shadow);
-      transition: transform 220ms cubic-bezier(.2,.8,.2,1);
+      width:22px;
+      height:22px;
+      background:var(--thumb);
+      border-radius:50%;
+      position:absolute;
+      top:3px;
+      left:3px;
+      transition:.2s;
     }
 
     html[data-theme="dark"] .theme-thumb{
-      transform: translateX(18px);
+      transform:translateX(18px);
     }
 
-    .theme-toggle:focus-visible{
-      outline: 2px solid rgba(0, 122, 255, 0.65);
-      outline-offset: 2px;
-    }
+    .logo-container{text-align:center;margin:40px 0}
+    .logo{width:80%;max-width:900px}
 
-    /* =====================
-       LOGO
-       ===================== */
-    .logo-container {
-      text-align: center;
-      margin: 40px 0 20px 0;
-    }
+    .contact{max-width:900px;margin:auto;padding:20px}
+    h2{text-align:center;margin-bottom:30px}
 
-    .logo {
-      width: 80%;
-      max-width: 900px;
-    }
+    table{width:100%;border-collapse:collapse}
+    td{padding:6px 4px;font-size:16px}
+    td:first-child{font-weight:bold;width:40%;color:var(--muted)}
 
-    /* =====================
-       CONTACT
-       ===================== */
-    .contact {
-      max-width: 900px;
-      margin: auto;
-      padding: 20px;
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 30px;
-      font-size: 28px;
-      font-weight: bold;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    td {
-      padding: 6px 4px;
-      font-size: 16px;
-      vertical-align: top;
-      white-space: normal;
-      color: var(--text);
-    }
-
-    td:first-child {
-      font-weight: bold;
-      width: 40%;
-      color: var(--muted);
-    }
-
-    /* Linkovi u CONTACT tabeli izgledaju kao običan tekst */
-    .contact a{
-      color: inherit;
-      text-decoration: none;
-      font-weight: inherit;
-    }
-
-    @media (min-width: 1200px) {
-      td { white-space: nowrap; }
-    }
-
-    @media (max-width: 600px) {
-      .logo { width: 90%; }
-      h2 { font-size: 22px; }
-      .theme-toggle-wrap { top: 10px; right: 10px; }
-      .theme-toggle { padding: 7px 9px; gap: 8px; }
+    /* 🔒 LINKOVI IZGLEDAJU KAO OBICAN TEKST */
+    .contact a,
+    .contact a:visited,
+    .contact a:hover,
+    .contact a:active,
+    .contact a:focus,
+    .contact a:focus-visible{
+      color:inherit;
+      text-decoration:none;
+      font-weight:inherit;
+      outline:none;
+      cursor:default;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- MAP + TOGGLE -->
-  <div class="topbar">
-    <div class="theme-toggle-wrap">
-      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme">
-        <!-- Sun -->
-        <span class="theme-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="4"></circle>
-            <line x1="12" y1="1" x2="12" y2="3"></line>
-            <line x1="12" y1="21" x2="12" y2="23"></line>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-            <line x1="1" y1="12" x2="3" y2="12"></line>
-            <line x1="21" y1="12" x2="23" y2="12"></line>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-          </svg>
-        </span>
-
-        <span class="theme-track" aria-hidden="true">
-          <span class="theme-thumb"></span>
-        </span>
-
-        <!-- Moon -->
-        <span class="theme-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24">
-            <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path>
-          </svg>
-        </span>
-      </button>
-    </div>
-
-    <div class="map-wrap">
-      <div id="map" class="map" aria-label="Mapa lokacije"></div>
-    </div>
+<div class="topbar">
+  <div class="theme-toggle-wrap">
+    <button class="theme-toggle" id="themeToggle">
+      <span class="theme-track"><span class="theme-thumb"></span></span>
+    </button>
   </div>
+  <div id="map" class="map"></div>
+</div>
 
-  <!-- LOGO -->
-  <div class="logo-container">
-    <img src="logo.png" alt="Logo" class="logo">
-  </div>
+<div class="logo-container">
+  <img src="logo.png" class="logo" alt="Commander">
+</div>
 
-  <!-- CONTACT -->
-  <section class="contact" id="kontakt">
-    <h2>Contact / Kontakt</h2>
+<section class="contact">
+  <h2>Contact / Kontakt</h2>
+  <table>
+    <tr><td>Registered Company Name:</td><td>COMMANDER DRUŠTVO SA OGRANIČENOM ODGOVORNOŠĆU BEOGRAD - ČUKARICA</td></tr>
+    <tr><td>Trade Name:</td><td>COMMANDER D.O.O BEOGRAD</td></tr>
+    <tr><td>Address:</td><td>Nova 2 20, Beograd 11147</td></tr>
+    <tr><td>TAX ID:</td><td>112412448</td></tr>
+    <tr><td>Company ID:</td><td>21668923</td></tr>
+    <tr><td>Activity Code:</td><td>7022</td></tr>
+    <tr><td>E-mail:</td><td><a href="mailto:office@commander.rs">office@commander.rs</a></td></tr>
+    <tr><td>Web:</td><td><a href="https://commander.rs/">commander.rs</a></td></tr>
+    <tr><td>Phone:</td><td><a href="tel:+381643333431">+381 (0) 64 3333 431</a></td></tr>
+  </table>
+</section>
 
-    <table>
-      <tr>
-        <td>Registered Company Name / Pun naziv kompanije:</td>
-        <td>COMMANDER DRUŠTVO SA OGRANIČENOM ODGOVORNOŠĆU BEOGRAD - ČUKARICA</td>
-      </tr>
-      <tr>
-        <td>Trade Name / Skraćeni naziv kompanije:</td>
-        <td>COMMANDER D.O.O BEOGRAD</td>
-      </tr>
-      <tr>
-        <td>Address / Adresa:</td>
-        <td>Nova 2 20, Beograd 11147</td>
-      </tr>
-      <tr>
-        <td>TAX ID / PIB:</td>
-        <td>112412448</td>
-      </tr>
-      <tr>
-        <td>Company ID / Matični broj:</td>
-        <td>21668923</td>
-      </tr>
-      <tr>
-        <td>Activity Code / Šifra delatnosti:</td>
-        <td>7022</td>
-      </tr>
-      <tr>
-        <td>E-mail / Elektronska pošta:</td>
-        <td><a href="mailto:office@commander.rs">office@commander.rs</a></td>
-      </tr>
-      <tr>
-        <td>Web / Internet prezentacija:</td>
-        <td><a href="https://commander.rs/">commander.rs</a></td>
-      </tr>
-      <tr>
-        <td>Phone / Telefon:</td>
-        <td><a href="tel:+381643333431">+381 (0) 64 3333 431</a></td>
-      </tr>
-    </table>
-  </section>
+<script>
+(function(){
+  const root=document.documentElement;
+  const btn=document.getElementById("themeToggle");
+  const saved=localStorage.getItem("theme");
+  root.setAttribute("data-theme",saved||"light");
 
-  <!-- THEME SCRIPT (menja i mapu) -->
-  <script>
-    (function () {
-      const root = document.documentElement;
-      const btn = document.getElementById('themeToggle');
+  btn.onclick=()=>{
+    const t=root.getAttribute("data-theme")==="dark"?"light":"dark";
+    root.setAttribute("data-theme",t);
+    localStorage.setItem("theme",t);
+    if(window.__setMapTheme)window.__setMapTheme(t);
+  };
+})();
+</script>
 
-      const saved = localStorage.getItem('theme'); // "light" | "dark" | null
-      const systemPrefersDark = window.matchMedia &&
-        window.matchMedia('(prefers-color-scheme: dark)').matches;
+<script>
+const MAP_STYLE_DARK=[{elementType:"geometry",stylers:[{color:"#0b0b0f"}]}];
 
-      function applyTheme(theme) {
-        root.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
+function initMap(){
+  const loc={lat:44.75757818742131,lng:20.413038574132614};
+  const dark=document.documentElement.getAttribute("data-theme")==="dark";
+  const map=new google.maps.Map(document.getElementById("map"),{
+    center:loc,zoom:16,
+    styles:dark?MAP_STYLE_DARK:null,
+    mapTypeControl:false,streetViewControl:false
+  });
 
-        if (window.__commanderMap && typeof window.__setMapTheme === "function") {
-          window.__setMapTheme(theme);
-        }
-      }
+  window.__setMapTheme=t=>map.setOptions({styles:t==="dark"?MAP_STYLE_DARK:null});
 
-      // Initial theme
-      if (saved === 'light' || saved === 'dark') {
-        applyTheme(saved);
-      } else {
-        applyTheme(systemPrefersDark ? 'dark' : 'light');
-      }
+  new google.maps.Marker({
+    position:loc,
+    map,
+    icon:{url:"/logogm.png",scaledSize:new google.maps.Size(48,48)}
+  });
+}
+</script>
 
-      // Toggle
-      btn.addEventListener('click', () => {
-        const current = root.getAttribute('data-theme');
-        applyTheme(current === 'dark' ? 'light' : 'dark');
-      });
-    })();
-  </script>
-
-  <!-- GOOGLE MAPS -->
-  <script>
-    // Dark style for the map
-    const MAP_STYLE_DARK = [
-      { elementType: "geometry", stylers: [{ color: "#0b0b0f" }] },
-      { elementType: "labels.text.stroke", stylers: [{ color: "#0b0b0f" }] },
-      { elementType: "labels.text.fill", stylers: [{ color: "#a8adb4" }] },
-      { featureType: "administrative", elementType: "geometry", stylers: [{ color: "#2b2b35" }] },
-      { featureType: "poi.park", elementType: "geometry", stylers: [{ color: "#101018" }] },
-      { featureType: "road", elementType: "geometry", stylers: [{ color: "#1a1a24" }] },
-      { featureType: "road", elementType: "geometry.stroke", stylers: [{ color: "#2b2b35" }] },
-      { featureType: "road", elementType: "labels.text.fill", stylers: [{ color: "#a8adb4" }] },
-      { featureType: "road.highway", elementType: "geometry", stylers: [{ color: "#242433" }] },
-      { featureType: "road.highway", elementType: "geometry.stroke", stylers: [{ color: "#3b3b4a" }] },
-      { featureType: "water", elementType: "geometry", stylers: [{ color: "#0f1b2b" }] },
-      { featureType: "water", elementType: "labels.text.fill", stylers: [{ color: "#7d848c" }] }
-    ];
-
-    function initMap() {
-      const location = { lat: 44.75757818742131, lng: 20.413038574132614 };
-      const isDark = document.documentElement.getAttribute("data-theme") === "dark";
-
-      const map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 16,
-        center: location,
-        mapTypeControl: false,
-        streetViewControl: false,
-        fullscreenControl: false,
-        styles: isDark ? MAP_STYLE_DARK : null
-      });
-
-      window.__commanderMap = map;
-      window.__setMapTheme = function(theme){
-        map.setOptions({ styles: theme === "dark" ? MAP_STYLE_DARK : null });
-      };
-
-      // ✅ Google-like pin with logo inside (SVG)
-      const svg = `
-        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
-          <!-- pin shadow -->
-          <path d="M32 62c0 0 18-22.2 18-34C50 17.4 42.6 10 32 10S14 17.4 14 28c0 11.8 18 34 18 34z"
-                fill="#ffffff" fill-opacity="0.95"/>
-          <!-- pin border -->
-          <path d="M32 62c0 0 18-22.2 18-34C50 17.4 42.6 10 32 10S14 17.4 14 28c0 11.8 18 34 18 34z"
-                fill="none" stroke="#c7c7c7" stroke-width="2"/>
-          <!-- inner circle -->
-          <circle cx="32" cy="28" r="13.5" fill="#ffffff" stroke="#d6d6d6" stroke-width="2"/>
-          <!-- logo (clipped circle) -->
-          <defs>
-            <clipPath id="clipCircle">
-              <circle cx="32" cy="28" r="12.2"/>
-            </clipPath>
-          </defs>
-          <image href="/logogm.png" x="20" y="16" width="24" height="24" clip-path="url(#clipCircle)" preserveAspectRatio="xMidYMid slice"/>
-        </svg>
-      `;
-
-      const pinIcon = {
-        url: "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg),
-        scaledSize: new google.maps.Size(48, 48),
-        anchor: new google.maps.Point(24, 46) // tip of pin
-      };
-
-      new google.maps.Marker({
-        position: location,
-        map,
-        title: "COMMANDER D.O.O BEOGRAD",
-        icon: pinIcon
-      });
-    }
-  </script>
-
-  <!-- GOOGLE MAPS API (KEY UBACUJE GITHUB ACTIONS) -->
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=__GOOGLE_MAPS_API_KEY__&callback=initMap"
-    async defer>
-  </script>
+<script src="https://maps.googleapis.com/maps/api/js?key=__GOOGLE_MAPS_API_KEY__&callback=initMap" async defer></script>
 
 </body>
 </html>
