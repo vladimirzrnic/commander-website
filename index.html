@@ -99,11 +99,12 @@
       transform:translateX(18px);
     }
 
-    .map{
+    .map-container {
       width:100%;
       height:40vh;
       min-height:250px;
       display:block;
+      border: none;
     }
 
     .logo-container{ text-align:center; margin:40px 0 20px; }
@@ -115,18 +116,9 @@
     td{ padding:6px 4px; font-size:16px; vertical-align:top; color:var(--text); }
     td:first-child{ font-weight:bold; width:40%; color:var(--muted); }
 
-    /* linkovi izgledaju identično kao tekst */
-    .contact a,
-    .contact a:visited,
-    .contact a:hover,
-    .contact a:active,
-    .contact a:focus,
-    .contact a:focus-visible{
+    .contact a{
       color:inherit;
       text-decoration:none;
-      font-weight:inherit;
-      outline:none;
-      cursor:default;
     }
 
     @media (min-width: 1200px) { td { white-space: nowrap; } }
@@ -149,7 +141,13 @@
       </span>
     </button>
   </div>
-  <div id="map" class="map" aria-label="Mapa lokacije"></div>
+  <iframe 
+    class="map-container"
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2833.0031899169624!2d20.41046367664654!3d44.75757818742131!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475a71df542c2357%3A0x679468903332007f!2sNova%202%2020%2C%20Beograd%2011147!5e0!3m2!1ssr!2srs!4v1714392000000!5m2!1ssr!2srs" 
+    allowfullscreen="" 
+    loading="lazy" 
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
 </div>
 
 <div class="logo-container">
@@ -208,7 +206,6 @@
     function apply(theme){
       root.setAttribute("data-theme", theme);
       localStorage.setItem("theme", theme);
-      if (window.__setMapTheme) window.__setMapTheme(theme);
     }
 
     if (saved === "light" || saved === "dark") apply(saved);
@@ -219,80 +216,6 @@
       apply(current === "dark" ? "light" : "dark");
     });
   })();
-</script>
-
-<script>
-  // ✅ Dark style: dodati landscape/man_made/building da se vide blokovi i zgrade
-  const MAP_STYLE_DARK = [
-    { elementType: "geometry", stylers: [{ color: "#0b0b0f" }] },
-    { elementType: "labels.text.stroke", stylers: [{ color: "#0b0b0f" }] },
-    { elementType: "labels.text.fill", stylers: [{ color: "#b2b7be" }] },
-
-    /* ✅ DODATO: podloga / kopno */
-    { featureType: "landscape", elementType: "geometry", stylers: [{ color: "#0e0e14" }] },
-
-    /* ✅ DODATO: man-made (blokovi/zgrade/industrija) */
-    { featureType: "landscape.man_made", elementType: "geometry", stylers: [{ color: "#14141d" }] },
-
-    /* ✅ DODATO: buildings (u nekim oblastima se renderuju ovde) */
-    { featureType: "building", elementType: "geometry", stylers: [{ color: "#1b1b27" }] },
-
-    { featureType: "administrative", elementType: "geometry", stylers: [{ color: "#2b2b35" }] },
-    { featureType: "administrative.country", elementType: "labels.text.fill", stylers: [{ color: "#d0d3d8" }] },
-    { featureType: "administrative.locality", elementType: "labels.text.fill", stylers: [{ color: "#d0d3d8" }] },
-
-    /* POI label-e ostaju, ali diskretno */
-    { featureType: "poi", elementType: "labels.text.fill", stylers: [{ color: "#a8adb4" }] },
-    { featureType: "poi.park", elementType: "geometry", stylers: [{ color: "#101018" }] },
-
-    /* ✅ ROADS */
-    { featureType: "road", elementType: "geometry", stylers: [{ color: "#1a1a24" }] },
-    { featureType: "road", elementType: "geometry.stroke", stylers: [{ color: "#2b2b35" }, { weight: 1.2 }] },
-    { featureType: "road", elementType: "labels.text.fill", stylers: [{ color: "#a8adb4" }] },
-    { featureType: "road.highway", elementType: "geometry", stylers: [{ color: "#242433" }] },
-    { featureType: "road.highway", elementType: "geometry.stroke", stylers: [{ color: "#3b3b4a" }, { weight: 1.4 }] },
-
-    { featureType: "transit", elementType: "geometry", stylers: [{ color: "#1a1a24" }] },
-
-    { featureType: "water", elementType: "geometry", stylers: [{ color: "#0f1b2b" }] },
-    { featureType: "water", elementType: "labels.text.fill", stylers: [{ color: "#7d848c" }] }
-  ];
-
-  function initMap(){
-    const loc = { lat: 44.75757818742131, lng: 20.413038574132614 };
-    const isDark = document.documentElement.getAttribute("data-theme") === "dark";
-
-    const map = new google.maps.Map(document.getElementById("map"), {
-      center: loc,
-      zoom: 16,
-      mapTypeControl: false,
-      streetViewControl: false,
-      fullscreenControl: false,
-      styles: isDark ? MAP_STYLE_DARK : null
-    });
-
-    // theme sync
-    window.__setMapTheme = (theme) => {
-      map.setOptions({ styles: theme === "dark" ? MAP_STYLE_DARK : null });
-    };
-
-    // marker (bez hover/prozora)
-    new google.maps.Marker({
-      position: loc,
-      map,
-      title: "COMMANDER D.O.O BEOGRAD",
-      icon: {
-        url: "/logogm.png",
-        scaledSize: new google.maps.Size(48, 48),
-        anchor: new google.maps.Point(24, 24)
-      }
-    });
-  }
-</script>
-
-<script
-  src="https://maps.googleapis.com/maps/api/js?key=__GOOGLE_MAPS_API_KEY__&callback=initMap"
-  async defer>
 </script>
 
 </body>
